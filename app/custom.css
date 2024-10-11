@@ -1,0 +1,89 @@
+body {
+    background-color: #0B1324;
+}
+.navigation-bg {
+  background-color: #0F172A;
+}
+.navigation-bg a {
+  text-decoration: none;
+}
+.hero-section {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    color: #ffffff;
+  }
+  
+  .container-padding {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  .shape-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    margin: auto;
+  }
+  
+  .background-shape {
+    position: absolute;
+    width: 100%;
+    padding-bottom: 100%;
+    background: rgba(100, 149, 237, 0.2);
+    border-radius: 50%;
+    left: 0;
+    z-index: -1;
+  }
+  
+  .responsive-image {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+  }
+  
+  .aboutme-bg {
+    background-color: #0F172A;
+    color: #ffffff;
+  }
+
+  .gallery-container {
+    column-count: 3;
+    column-gap: 16px;
+  }
+  
+  .gallery-item {
+    background: #1E293B;
+    border: 1px solid #1f3048;
+    padding: 15px;
+    display: inline-block;
+    margin-bottom: 16px;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+  }
+  
+  .gallery-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+    
+  @media (max-width: 992px) {
+    .gallery-container {
+      column-count: 2;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .gallery-container {
+      column-count: 1;
+    }
+  }
+
+  .footer-bg {
+    background-color: #0F172A;
+  }
+
+  footer .social-icons svg {
+    width: 24px;
+  }
