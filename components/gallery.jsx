@@ -11,7 +11,7 @@ export default function Gallery({ domain }) {
   ];
 
   return (
-    <section className="hero-section">
+    <section className="gallery-section py-5 text-white">
       <div className="container container-padding">
         <h2>I love what I do</h2>
         <p className='lead'>Gallery</p>
