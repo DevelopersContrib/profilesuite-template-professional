@@ -3,19 +3,21 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-export default function Hero({ domain, phrase = "Rise Above, Conquer Beyond!" }) {
+const mockSlogan = "Rise Above, Conquer Beyond!";
+
+export default function Hero({ domain }) {
   const textRef = useRef(null);
 
   useEffect(() => {
-    if (!phrase) return;
+    if (!mockSlogan) return;
 
     let index = 0;
     const textElement = textRef.current;
     textElement.innerHTML = '';
 
     const type = () => {
-      if (index < phrase.length) {
-        textElement.innerHTML += phrase.charAt(index);
+      if (index < mockSlogan.length) {
+        textElement.innerHTML += mockSlogan.charAt(index);
         index++;
         setTimeout(type, 100);
       }
@@ -24,9 +26,9 @@ export default function Hero({ domain, phrase = "Rise Above, Conquer Beyond!" })
     type();
 
     return () => {
-      index = phrase.length; 
+      index = mockSlogan.length;
     };
-  }, [phrase]);
+  }, []);
 
   return (
     <section className="hero-section">
@@ -34,7 +36,7 @@ export default function Hero({ domain, phrase = "Rise Above, Conquer Beyond!" })
       <div className="container container-padding">
         <div className="row align-items-center gy-6 gy-xl-0">
           <div className="col-md-7">
-            <h1 className="display-2 typer">
+            <h1 className="display-2 typer" aria-live="polite">
               <span ref={textRef}></span>
             </h1>
           </div>
