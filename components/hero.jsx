@@ -11,7 +11,7 @@ export default function Hero({ domain, phrase = "Rise Above, Conquer Beyond!" })
 
     let index = 0;
     const textElement = textRef.current;
-    textElement.innerHTML = ''; // Clear the text before typing starts
+    textElement.innerHTML = '';
 
     const type = () => {
       if (index < phrase.length) {
@@ -21,10 +21,10 @@ export default function Hero({ domain, phrase = "Rise Above, Conquer Beyond!" })
       }
     };
 
-    type(); // Start the typing effect
+    type();
 
     return () => {
-      index = phrase.length; // Cleanup to prevent overlap if the component re-renders
+      index = phrase.length; 
     };
   }, [phrase]);
 
