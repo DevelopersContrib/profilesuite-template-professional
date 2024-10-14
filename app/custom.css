@@ -9,8 +9,8 @@ body {
 }
 .hero-section {
   position: relative;
-  padding-top: 18rem;
-  padding-bottom: 18rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
   color: #ffffff;
   background-image: url('https://images.pexels.com/photos/13048407/pexels-photo-13048407.jpeg');
   background-size: cover;
@@ -108,26 +108,21 @@ body {
     width: 24px;
   }
  
-  @keyframes typing {
-    from { width: 0ch; }
-    to { width: 27ch; }
+   
+  .typer span::after {
+    content: '|';
+    animation: blink 0.7s step-end infinite;
   }
   
-  @keyframes blink-caret {
-    50% { border-color: transparent; }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
   }
   
-  .text {
-    font-weight: 600;
-    font-size: 4rem;
-    border-right: 2px solid #ffffff;
-    margin: 10px 20px;
-    white-space: nowrap;
-    overflow: hidden;
-    animation: typing 6s steps(27, end) infinite,
-               blink-caret 0.5s step-end infinite;
-  }
-  
+
+
+
   
   
   
