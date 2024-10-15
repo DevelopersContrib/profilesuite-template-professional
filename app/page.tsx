@@ -4,9 +4,10 @@ import Aboutme from "../components/aboutme";
 import Gallery from "../components/gallery";
 import Biography from "../components/biography";
 import Footer from "../components/footer";
-import {  getDomain, getProfile } from "../lib/data";
+import {  getDomain, getProfile, updateProfile } from "../lib/data";
 
 export default async function Home() {
+  const updated = await updateProfile();
   const c = await getProfile();
   const domain = getDomain();
   const profile = c.data.profile;
