@@ -3,11 +3,11 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-const mockSlogan = "Rise Above, Conquer Beyond!";
 
-export default function Hero({ domain }) {
+
+export default function Hero({ profile, gallery }) {
   const textRef = useRef(null);
-
+  const mockSlogan = profile.slogan;
   useEffect(() => {
     if (!mockSlogan) return;
 
@@ -44,7 +44,7 @@ export default function Hero({ domain }) {
             <div className="shape-wrapper">
               <div className="background-shape"></div>
               <Image 
-                src="https://images.pexels.com/photos/13048407/pexels-photo-13048407.jpeg" 
+                src={`https://www.profilesuite.com/uploads/profile/`+profile.profile_image}
                 alt="Descriptive Alt Text" 
                 width={500} 
                 height={500} 

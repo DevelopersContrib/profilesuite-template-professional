@@ -1,4 +1,4 @@
-export default function Aboutme({domain}) {
+export default function Aboutme({profile}) {
   
     return (
       <>        
@@ -6,14 +6,14 @@ export default function Aboutme({domain}) {
         <div className="container">
             <div className="row">
                 <div className="col">
-                <h2>Cristiano Ronaldo</h2>
+                <h2>{profile.name}</h2>
                 <p className='lead'>About Me</p>
                 </div>
             </div>
             <div className="row">
                 <div className="col">
                 <p>
-                Cristiano Ronaldo dos Santos Aveiro GOIH ComM is a Portuguese professional footballer who plays as a forward for and captains both Saudi Pro League club Al Nassr and the Portugal national team.
+                {profile.introduction}
                 </p>
                 </div>
             </div>
