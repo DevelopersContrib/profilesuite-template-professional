@@ -3,11 +3,10 @@
 import { useEffect, useRef } from 'react';
 import Image from 'next/image';
 
-
-
 export default function Hero({ profile, gallery }) {
   const textRef = useRef(null);
-  const mockSlogan = profile.slogan;
+  const mockSlogan = profile?.slogan;
+
   useEffect(() => {
     if (!mockSlogan) return;
 
@@ -28,10 +27,17 @@ export default function Hero({ profile, gallery }) {
     return () => {
       index = mockSlogan.length;
     };
-  }, []);
+  }, [mockSlogan]);
 
   return (
-    <section className="hero-section">
+    <section
+      className="hero-section"
+      style={{
+        backgroundImage: `url('https://www.profilesuite.com/uploads/profile/${profile?.profile_image}')`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    >
       <div className="overlay"></div>
       <div className="container container-padding">
         <div className="row align-items-center gy-6 gy-xl-0">
@@ -43,13 +49,13 @@ export default function Hero({ profile, gallery }) {
           <div className="col-md-5 text-center d-none1">
             <div className="shape-wrapper">
               <div className="background-shape"></div>
-              <Image 
-                src={`https://www.profilesuite.com/uploads/profile/`+profile.profile_image}
-                alt="Descriptive Alt Text" 
-                width={500} 
-                height={500} 
+              <Image
+                src={`https://www.profilesuite.com/uploads/profile/${profile?.profile_image}`}
+                alt="Descriptive Alt Text"
+                width={500}
+                height={500}
                 className="responsive-image"
-                priority 
+                priority
               />
             </div>
           </div>
