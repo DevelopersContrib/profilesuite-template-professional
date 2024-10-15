@@ -33,7 +33,7 @@ export default function Hero({ profile, gallery }) {
     <section
       className="hero-section"
       style={{
-        backgroundImage: `url('https://www.profilesuite.com/uploads/profile/${profile?.profile_image}')`,
+        backgroundImage: `url('${gallery.length>0 ? 'https://www.profilesuite.com/uploads/gallery/'+gallery[0].filename : 'https://www.profilesuite.com/uploads/profile/'+profile?.profile_image}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
