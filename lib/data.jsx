@@ -15,7 +15,7 @@ export function getDomain() {
 export async function getProfile() {
   const domain = getDomain();
   const url = process.env.GET_PROFILE+`&domain=${domain}`
-  const res = await fetch(url, { next: { revalidate: 600 } });
+  const res = await fetch(url, { next: { revalidate: 0 } });
  
   
   if (!res.ok){
@@ -30,7 +30,7 @@ export async function getProfile() {
 export async function updateProfile() {
   const domain = getDomain();
   const url = process.env.UPDATE_PROFILE+`&domain=${domain}`
-  const res = await fetch(url, { next: { revalidate: 300 } });
+  const res = await fetch(url, { next: { revalidate: 0 } });
  
   
   if (!res.ok){
