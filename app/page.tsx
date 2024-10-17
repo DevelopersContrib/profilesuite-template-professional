@@ -7,25 +7,26 @@ import Footer from "../components/footer";
 import {  getDomain, getProfile, updateProfile } from "../lib/data";
 
 export default async function Home() {
-  const updated = await updateProfile();
-  const c = await getProfile();
-  const domain = getDomain();
-  const profile = c.data.profile;
-  const education = c.data.education;
-  const experience = c.data.experience;
-  const skills = c.data.skills;
-  const gallery = c.data.gallery;
-  const links = c.data.links;
-  const social = c.data.socials;
+  // const updated = await updateProfile();
+  // const c = await getProfile();
+  // const domain = getDomain();
+  // const profile = c.data.profile;
+  // const education = c.data.education;
+  // const experience = c.data.experience;
+  // const skills = c.data.skills;
+  // const gallery = c.data.gallery;
+  // const links = c.data.links;
+  // const social = c.data.socials;
   
   return (
     <>
-      <Navigation domain={domain} />
+      {/* <Navigation domain={domain} />
       <Hero profile={profile} gallery={gallery} />
       <Aboutme profile={profile} />
       {gallery.length > 0 && <Gallery gallery={gallery} />}
       <Biography experiences={experience} education={education} />
-      <Footer domain={domain} social={social} />
+      <Footer domain={domain} social={social} /> */}
+      <h1>hello</h1>
     </>
   );
 }
