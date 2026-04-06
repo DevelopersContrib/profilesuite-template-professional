@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e ':*)",
+      "Bash(rm -rf .next)",
+      "Bash(npx next:*)"
+    ]
+  }
+}
