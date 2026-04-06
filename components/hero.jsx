@@ -6,6 +6,11 @@ import Image from 'next/image';
 export default function Hero({ profile, gallery }) {
   const textRef = useRef(null);
   const mockSlogan = profile?.slogan;
+  const profileImageUrl = profile?.profile_image
+    ? profile.profile_image.includes('profile')
+      ? `${process.env.NEXT_PUBLIC_S3_URL}/${profile.profile_image}`
+      : `${process.env.NEXT_PUBLIC_S3_URL}/profile/${profile.profile_image}`
+    : null;
 
   useEffect(() => {
     if (!mockSlogan) return;
@@ -33,7 +38,7 @@ export default function Hero({ profile, gallery }) {
     <section
       className="hero-section"
       style={{
-        backgroundImage: `url('${gallery.length>0 ? 'https://www.profilesuite.com/uploads/gallery/'+gallery[0].filename : 'https://www.profilesuite.com/uploads/profile/'+profile?.profile_image}')`,
+        backgroundImage: `url('${gallery.length>0 ? process.env.NEXT_PUBLIC_S3_URL+'/uploads/gallery/'+gallery[0].filename : profileImageUrl}')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
@@ -49,14 +54,16 @@ export default function Hero({ profile, gallery }) {
           <div className="col-md-5 text-center d-none1">
             <div className="shape-wrapper">
               <div className="background-shape"></div>
-              <Image
-                src={`https://www.profilesuite.com/uploads/profile/${profile?.profile_image}`}
-                alt="Descriptive Alt Text"
-                width={500}
-                height={500}
-                className="responsive-image"
-                priority
-              />
+              {profile?.profile_image && (
+                <Image
+                  src={profileImageUrl}
+                  alt="Descriptive Alt Text"
+                  width={500}
+                  height={500}
+                  className="responsive-image"
+                  priority
+                />
+              )}
             </div>
           </div>
         </div>
