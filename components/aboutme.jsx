@@ -1,25 +1,15 @@
-export default function Aboutme({profile}) {
-  
-    return (
-      <>        
-        <section className='aboutme-bg py-5'>
-        <div className="container">
-            <div className="row">
-                <div className="col">
-                <h2>{profile.name}</h2>
-                <p className='lead'>About Me</p>
-                </div>
-            </div>
-            <div className="row">
-                <div className="col">
-                <p>
-                {profile.introduction}
-                </p>
-                </div>
-            </div>
+export default function Aboutme({ profile }) {
+  return (
+    <section id="about" className="about-section fade-in-section">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-8">
+            <p className="section-label">About Me</p>
+            <h2 className="section-heading">{profile.name}</h2>
+            <p className="about-text">{profile.introduction}</p>
+          </div>
         </div>
-        </section>
-      </>
-    )  
+      </div>
+    </section>
+  );
 }
-  

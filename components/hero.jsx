@@ -23,7 +23,7 @@ export default function Hero({ profile, gallery }) {
       if (index < mockSlogan.length) {
         textElement.innerHTML += mockSlogan.charAt(index);
         index++;
-        setTimeout(type, 100);
+        setTimeout(type, 80);
       }
     };
 
@@ -34,39 +34,64 @@ export default function Hero({ profile, gallery }) {
     };
   }, [mockSlogan]);
 
+  const bgImage = gallery.length > 0
+    ? `${process.env.NEXT_PUBLIC_S3_URL}/uploads/gallery/${gallery[0].filename}`
+    : profileImageUrl;
+
   return (
     <section
-      className="hero-section"
+      className="hero-modern"
       style={{
-        backgroundImage: `url('${gallery.length>0 ? process.env.NEXT_PUBLIC_S3_URL+'/uploads/gallery/'+gallery[0].filename : profileImageUrl}')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        backgroundImage: bgImage ? `url('${bgImage}')` : 'none',
       }}
     >
-      <div className="overlay"></div>
-      <div className="container container-padding">
-        <div className="row align-items-center gy-6 gy-xl-0">
-          <div className="col-md-7">
-            <h1 className="display-2 typer" aria-live="polite">
+      <div className="hero-overlay"></div>
+      <div className="hero-gradient-orb hero-orb-1"></div>
+      <div className="hero-gradient-orb hero-orb-2"></div>
+
+      <div className="container hero-content">
+        <div className="row align-items-center">
+          <div className={profile?.profile_image ? 'col-lg-7' : 'col-lg-10'}>
+            <p className="hero-label hero-animate">Welcome</p>
+            <h1 className="hero-title typer hero-animate-delay-1" aria-live="polite">
               <span ref={textRef}></span>
             </h1>
-          </div>
-          <div className="col-md-5 text-center d-none1">
-            <div className="shape-wrapper">
-              <div className="background-shape"></div>
-              {profile?.profile_image && (
-                <Image
-                  src={profileImageUrl}
-                  alt="Descriptive Alt Text"
-                  width={500}
-                  height={500}
-                  className="responsive-image"
-                  priority
-                />
+            {profile?.name && (
+              <p className="hero-name hero-animate-delay-2">{profile.name}</p>
+            )}
+            <div className="hero-cta hero-animate-delay-3">
+              <a href="#about" className="btn-modern">Learn More</a>
+              {profile?.email && (
+                <a href={`mailto:${profile.email}`} className="btn-modern-outline">
+                  Get in Touch
+                </a>
               )}
             </div>
           </div>
+
+          {profile?.profile_image && (
+            <div className="col-lg-5 text-center d-none d-md-block hero-animate-delay-4">
+              <div className="hero-image-container">
+                <div className="hero-image-glow"></div>
+                <div className="hero-image-outer-ring"></div>
+                <div className="hero-image-border">
+                  <Image
+                    src={profileImageUrl}
+                    alt={profile.name || 'Profile'}
+                    width={360}
+                    height={360}
+                    className="hero-profile-img"
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
+      </div>
+
+      <div className="scroll-indicator hero-animate-delay-4">
+        <span></span>
       </div>
     </section>
   );
