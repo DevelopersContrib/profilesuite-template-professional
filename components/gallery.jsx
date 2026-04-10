@@ -11,7 +11,7 @@ export default function Gallery({ gallery }) {
             <div key={index} className="gallery-card">
               <div className="gallery-card-inner">
                 <Image
-                  src={`https://www.profilesuite.com/uploads/gallery/${item.filename}`}
+                  src={`https://www.profilesuite.com/uploads/${item.filename}`}
                   alt={item.title || `Gallery image ${index + 1}`}
                   width={400}
                   height={260}
