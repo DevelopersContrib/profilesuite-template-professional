@@ -35,7 +35,7 @@ export default function Hero({ profile, gallery }) {
   }, [mockSlogan]);
 
   const bgImage = gallery.length > 0
-    ? `${process.env.NEXT_PUBLIC_S3_URL}/uploads/${gallery[0].filename}`
+    ? `${process.env.NEXT_PUBLIC_S3_URL}/${gallery[0].filename}`
     : profileImageUrl;
 
   return (
