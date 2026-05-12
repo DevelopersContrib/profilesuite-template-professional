@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { resolveMediaSrc } from "../../lib/mediaUrl";
 
 export default function Home3Portfolio({ gallery }) {
   return (
@@ -10,7 +11,7 @@ export default function Home3Portfolio({ gallery }) {
             <figure key={index} className="home3-portfolio-item">
               <div className="home3-portfolio-img-wrap">
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_S3_URL}/${item.filename}`}
+                  src={resolveMediaSrc(item.filename)}
                   alt={item.title || `Work ${index + 1}`}
                   fill
                   sizes="(max-width: 575px) 100vw, (max-width: 991px) 50vw, 33vw"

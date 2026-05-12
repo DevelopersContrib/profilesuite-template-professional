@@ -6,13 +6,15 @@ import Home2Skills from "../../components/home2/Home2Skills";
 import Home2Gallery from "../../components/home2/Home2Gallery";
 import Home2Biography from "../../components/home2/Home2Biography";
 import Home2Footer from "../../components/home2/Home2Footer";
-import { getDomain, getProfile, updateProfile } from "../../lib/data";
+import {
+  getHomeLayoutMockProfilePayload,
+  homeLayoutMockDomain,
+} from "../../lib/homeLayoutMock";
 import "./home2.css";
 
 export default async function Home2Page() {
-  await updateProfile();
-  const c = await getProfile();
-  const domain = getDomain();
+  const c = getHomeLayoutMockProfilePayload();
+  const domain = homeLayoutMockDomain();
   const profile = c.data.profile;
   const education = c.data.education;
   const experience = c.data.experience;

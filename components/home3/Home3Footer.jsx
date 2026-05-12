@@ -64,13 +64,6 @@ export default function Home3Footer({ domain, social, profile }) {
           <p className="home3-copyright">
             © {new Date().getFullYear()} {domain}. All rights reserved.
           </p>
-          <p className="home3-template-switch">
-            <a href="/">Classic</a>
-            {" · "}
-            <a href="/home2">Alt layout</a>
-            {" · "}
-            <span>CV layout</span>
-          </p>
         </div>
       </div>
     </footer>

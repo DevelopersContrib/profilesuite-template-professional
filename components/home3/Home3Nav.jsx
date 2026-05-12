@@ -32,6 +32,13 @@ export default function Home3Nav({ domain }) {
     <header
       className={`home3-header ${scrolled ? "home3-header--scrolled" : ""}`}
     >
+      {open && (
+        <div
+          className="home3-nav-backdrop"
+          onClick={() => setOpen(false)}
+          aria-hidden="true"
+        />
+      )}
       <div className="home3-container home3-header-inner">
         <a href="/home3" className="home3-logo">
           {domain ? domain.split(".")[0] : "Profile"}
@@ -39,14 +46,20 @@ export default function Home3Nav({ domain }) {
         <button
           type="button"
           className="home3-nav-toggle"
-          aria-label="Menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="home3-primary-nav"
           onClick={() => setOpen((v) => !v)}
         >
           <span />
           <span />
           <span />
         </button>
-        <nav className={`home3-nav ${open ? "home3-nav--open" : ""}`}>
+        <nav
+          id="home3-primary-nav"
+          className={`home3-nav ${open ? "home3-nav--open" : ""}`}
+          aria-label="Primary"
+        >
           {NAV.map((item) => (
             <a
               key={item.label}

@@ -16,10 +16,6 @@ export default function Home2Biography({ experiences, education }) {
       className="home2-section home2-bio-bg fade-in-section"
     >
       <div className="home2-section-inner">
-        <span className="home2-sec-num" aria-hidden>
-          04
-        </span>
-
         <div className="home2-bio-cols">
           <div className="home2-bio-stack">
             <header className="home2-bio-col-head">

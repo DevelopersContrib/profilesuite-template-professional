@@ -3,20 +3,25 @@
 
 .home2-page {
   --h2-bg: #050508;
-  --h2-surface: #0c0c10;
-  --h2-elevated: #12121a;
-  --h2-border: rgba(255, 255, 255, 0.06);
+  --h2-surface: #0a0a0f;
+  --h2-elevated: #111118;
+  --h2-border: rgba(255, 255, 255, 0.065);
   --h2-text: #f4f4f5;
-  --h2-muted: #94a3b8;
+  --h2-muted: #9ca3af;
   --h2-accent: #f59e0b;
   --h2-accent-dim: rgba(245, 158, 11, 0.12);
+  --h2-focus-ring: rgba(245, 158, 11, 0.45);
+  --h2-radius: 14px;
+  --h2-radius-lg: 18px;
   /* One content column: hero, sections, footer share this width */
-  --home2-content-max: 1100px;
+  --home2-content-max: 1120px;
   --home2-gutter-x: clamp(1.25rem, 4vw, 2rem);
+  --home2-section-y: clamp(3.5rem, 9vw, 6.5rem);
   font-family: "DM Sans", system-ui, sans-serif;
   color: var(--h2-text);
   background: var(--h2-bg);
   min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
 }
 
 .home2-page h1,
@@ -55,20 +60,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 10px;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 12px;
   color: var(--h2-muted);
   text-decoration: none !important;
-  font-size: 0.65rem;
-  font-weight: 600;
-  transition: background 0.2s, color 0.2s;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  border: 1px solid transparent;
 }
 
 .home2-sidebar-nav a:hover,
 .home2-sidebar-nav a:focus-visible {
   background: var(--h2-accent-dim);
   color: var(--h2-accent);
+  border-color: rgba(245, 158, 11, 0.12);
 }
 
 .home2-main {
@@ -188,10 +193,11 @@
 .home2-hero {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: center;
   overflow: hidden;
-  padding: 4rem var(--home2-gutter-x) 6rem;
+  padding: 4rem var(--home2-gutter-x) clamp(5rem, 12vw, 7rem);
   background-size: cover;
   background-position: center;
 }
@@ -272,6 +278,12 @@
 @media (max-width: 991.98px) {
   .home2-hero-row {
     grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .home2-hero-photo {
+    justify-self: center;
+    max-width: 300px;
   }
 }
 
@@ -364,7 +376,7 @@
 
 /* --- Sections --- */
 .home2-section {
-  padding: 6rem var(--home2-gutter-x);
+  padding: var(--home2-section-y) var(--home2-gutter-x);
   position: relative;
 }
 
@@ -373,25 +385,6 @@
   max-width: var(--home2-content-max);
   margin: 0 auto;
   width: 100%;
-}
-
-.home2-sec-num {
-  font-family: "Syne", sans-serif;
-  font-size: clamp(4rem, 12vw, 8rem);
-  font-weight: 800;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.035);
-  position: absolute;
-  top: 0;
-  right: 0;
-  pointer-events: none;
-  user-select: none;
-  z-index: 0;
-}
-
-.home2-section-inner > .home2-sec-num ~ * {
-  position: relative;
-  z-index: 1;
 }
 
 .home2-sec-label {
@@ -404,10 +397,11 @@
 }
 
 .home2-sec-heading {
-  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-size: clamp(1.65rem, 2.8vw, 2.45rem);
   font-weight: 700;
-  margin-bottom: 2rem;
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
   letter-spacing: -0.02em;
+  line-height: 1.15;
 }
 
 .home2-about-bg {
@@ -415,10 +409,11 @@
 }
 
 .home2-about-text {
-  font-size: 1.125rem;
-  line-height: 1.85;
+  font-size: clamp(1.05rem, 1.35vw, 1.125rem);
+  line-height: 1.8;
   color: var(--h2-muted);
-  max-width: min(42rem, 100%);
+  max-width: min(40rem, 100%);
+  letter-spacing: 0.01em;
 }
 
 /* Skills — card grid + index + ring (home2) */
@@ -439,8 +434,8 @@
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr));
+  gap: clamp(1rem, 2.5vw, 1.35rem);
 }
 
 .home2-skill-card {
@@ -449,7 +444,7 @@
   min-height: 100%;
   padding: 1.25rem 1.35rem 1.35rem;
   border: 1px solid var(--h2-border);
-  border-radius: 14px;
+  border-radius: var(--h2-radius-lg);
   background: var(--h2-elevated);
   transition: border-color 0.25s ease, box-shadow 0.25s ease,
     transform 0.25s ease;
@@ -535,20 +530,47 @@
   background: var(--h2-surface);
 }
 
-.home2-work-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 1.25rem;
+/* Masonry: multi-column flow with varied tile heights */
+.home2-work-masonry {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  column-count: 2;
+  column-gap: 1.25rem;
+}
+
+@media (min-width: 992px) {
+  .home2-work-masonry {
+    column-count: 3;
+    column-gap: 1.35rem;
+  }
 }
 
 .home2-work-item {
-  grid-column: span 4;
   position: relative;
-  border-radius: 16px;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1.25rem;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  vertical-align: top;
+  border-radius: var(--h2-radius-lg);
   overflow: hidden;
   border: 1px solid var(--h2-border);
   background: var(--h2-elevated);
-  aspect-ratio: 4/3;
+  aspect-ratio: 4 / 3;
+}
+
+.home2-work-item--tall {
+  aspect-ratio: 3 / 4;
+}
+
+.home2-work-item--wide {
+  aspect-ratio: 16 / 9;
+}
+
+.home2-work-item--square {
+  aspect-ratio: 1 / 1;
 }
 
 .home2-work-img-wrap {
@@ -557,20 +579,25 @@
   overflow: hidden;
 }
 
-.home2-work-item:nth-child(4n + 1) {
-  grid-column: span 7;
+@media (min-width: 992px) {
+  .home2-work-item {
+    margin-bottom: 1.35rem;
+  }
 }
 
-.home2-work-item:nth-child(4n + 2) {
-  grid-column: span 5;
-}
+@media (max-width: 575.98px) {
+  .home2-work-masonry {
+    column-count: 1;
+  }
 
-@media (max-width: 991.98px) {
-  .home2-work-item,
-  .home2-work-item:nth-child(4n + 1),
-  .home2-work-item:nth-child(4n + 2) {
-    grid-column: span 12;
-    aspect-ratio: 16/10;
+  .home2-work-item {
+    aspect-ratio: 16 / 10;
+  }
+
+  .home2-work-item--tall,
+  .home2-work-item--wide,
+  .home2-work-item--square {
+    aspect-ratio: 16 / 10;
   }
 }
 
@@ -635,7 +662,7 @@
 }
 
 .home2-cv-card {
-  border-radius: 14px;
+  border-radius: var(--h2-radius-lg);
   padding: 1.15rem 1.25rem 1.2rem;
   border: 1px solid var(--h2-border);
   background: var(--h2-elevated);
@@ -676,7 +703,7 @@
     var(--h2-accent),
     rgba(245, 158, 11, 0.12)
   );
-  border-radius: 14px 14px 0 0;
+  border-radius: var(--h2-radius-lg) var(--h2-radius-lg) 0 0;
 }
 
 .home2-cv-card-top {
@@ -731,7 +758,7 @@
 
 /* Footer */
 .home2-footer {
-  padding: 4rem var(--home2-gutter-x) 2rem;
+  padding: clamp(3rem, 8vw, 4.5rem) var(--home2-gutter-x) 2.25rem;
   border-top: 1px solid var(--h2-border);
   background: var(--h2-surface);
   text-align: center;
@@ -751,13 +778,21 @@
   margin-bottom: 1.5rem;
 }
 
+.home2-footer-social {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
 .home2-footer-social a {
   display: inline-flex;
   width: 44px;
   height: 44px;
   align-items: center;
   justify-content: center;
-  margin: 0 0.35rem;
+  margin: 0;
   border-radius: 50%;
   border: 1px solid var(--h2-border);
   color: var(--h2-muted) !important;
@@ -776,20 +811,6 @@
   color: var(--h2-muted);
 }
 
-.home2-footer-layout {
-  margin-top: 1.25rem;
-  font-size: 0.8rem;
-}
-
-.home2-footer-layout a {
-  color: var(--h2-accent);
-  text-decoration: none !important;
-}
-
-.home2-footer-layout a:hover {
-  text-decoration: underline !important;
-}
-
 .typer-h2 span::after {
   content: "|";
   animation: blink-h2 0.75s step-end infinite;
@@ -799,5 +820,49 @@
 @keyframes blink-h2 {
   50% {
     opacity: 0;
+  }
+}
+
+/* Focus — keyboard navigation */
+.home2-page a:focus-visible,
+.home2-page button:focus-visible {
+  outline: 2px solid var(--h2-focus-ring);
+  outline-offset: 3px;
+}
+
+.home2-page .home2-sidebar-nav a:focus-visible,
+.home2-page .home2-footer-social a:focus-visible {
+  outline-offset: 2px;
+}
+
+.home2-page .home2-drawer-panel a:focus-visible {
+  outline: 2px solid var(--h2-accent);
+  outline-offset: 3px;
+  border-radius: 6px;
+  color: var(--h2-text);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home2-drawer,
+  .home2-drawer-panel {
+    transition-duration: 0.01ms !important;
+  }
+
+  .typer-h2 span::after {
+    animation: none !important;
+    content: none;
+  }
+
+  .home2-page .home2-btn-solid:hover,
+  .home2-page .home2-btn-ghost:hover,
+  .home2-page .home2-skill-card:hover,
+  .home2-page .home2-cv-card:hover,
+  .home2-page .home2-work-item:hover .home2-work-img {
+    transform: none;
+  }
+
+  .home2-scroll-hint span {
+    animation: none;
   }
 }

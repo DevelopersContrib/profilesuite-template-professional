@@ -56,13 +56,6 @@ export default function Home2Footer({ domain, social }) {
         <p className="home2-footer-note">
           &copy; {new Date().getFullYear()} {domain}. All rights reserved.
         </p>
-        <p className="home2-footer-layout">
-          <a href="/">Classic layout</a>
-          {" · "}
-          <span>Stratos-style view</span>
-          {" · "}
-          <a href="/home3">CV layout</a>
-        </p>
       </div>
     </footer>
   );

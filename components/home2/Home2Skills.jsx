@@ -74,9 +74,6 @@ export default function Home2Skills({ skills }) {
       className="home2-section home2-skills-bg fade-in-section"
     >
       <div className="home2-section-inner">
-        <span className="home2-sec-num" aria-hidden>
-          02
-        </span>
         <header className="home2-skills-head">
           <p className="home2-sec-label">Expertise</p>
           <h2 className="home2-sec-heading home2-skills-heading">Skills</h2>

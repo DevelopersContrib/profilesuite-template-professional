@@ -2,27 +2,34 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { resolveMediaSrc, resolveProfileImageSrc } from "../../lib/mediaUrl";
 
 export default function Home2Hero({ profile, gallery }) {
   const textRef = useRef(null);
   const mockSlogan = profile?.slogan;
 
-  const profileImageUrl = profile?.profile_image
-    ? profile.profile_image.includes("profile")
-      ? `${process.env.NEXT_PUBLIC_S3_URL}/${profile.profile_image}`
-      : `${process.env.NEXT_PUBLIC_S3_URL}/profile/${profile.profile_image}`
-    : null;
+  const profileImageUrl = resolveProfileImageSrc(profile);
 
   useEffect(() => {
     if (!mockSlogan) return;
-    let index = 0;
     const textElement = textRef.current;
     if (!textElement) return;
-    textElement.innerHTML = "";
+
+    const reducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (reducedMotion) {
+      textElement.textContent = mockSlogan;
+      return;
+    }
+
+    let index = 0;
+    textElement.textContent = "";
 
     const type = () => {
       if (index < mockSlogan.length) {
-        textElement.innerHTML += mockSlogan.charAt(index);
+        textElement.textContent += mockSlogan.charAt(index);
         index++;
         setTimeout(type, 75);
       }
@@ -36,7 +43,7 @@ export default function Home2Hero({ profile, gallery }) {
 
   const bgImage =
     gallery.length > 0
-      ? `${process.env.NEXT_PUBLIC_S3_URL}/${gallery[0].filename}`
+      ? resolveMediaSrc(gallery[0].filename)
       : profileImageUrl;
 
   return (

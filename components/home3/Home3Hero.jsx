@@ -1,10 +1,8 @@
 import Image from "next/image";
+import { resolveMediaSrc, resolveProfileImageSrc } from "../../lib/mediaUrl";
 
 function profileImageUrl(profile) {
-  if (!profile?.profile_image) return null;
-  return profile.profile_image.includes("profile")
-    ? `${process.env.NEXT_PUBLIC_S3_URL}/${profile.profile_image}`
-    : `${process.env.NEXT_PUBLIC_S3_URL}/profile/${profile.profile_image}`;
+  return resolveProfileImageSrc(profile);
 }
 
 function sloganBadges(slogan) {
@@ -16,13 +14,11 @@ function sloganBadges(slogan) {
     .slice(0, 4);
 }
 
-export default function Home3Hero({ profile, gallery, cvUrl }) {
+export default function Home3Hero({ profile, gallery }) {
   const badges = sloganBadges(profile?.slogan);
   const img = profileImageUrl(profile);
   const heroBg =
-    gallery?.length > 0
-      ? `${process.env.NEXT_PUBLIC_S3_URL}/${gallery[0].filename}`
-      : img;
+    gallery?.length > 0 ? resolveMediaSrc(gallery[0].filename) : img;
 
   return (
     <section id="home3-top" className="home3-hero fade-in-section">
@@ -53,26 +49,15 @@ export default function Home3Hero({ profile, gallery, cvUrl }) {
               <p className="home3-hero-text">{profile.introduction}</p>
             )}
             <div className="home3-hero-actions">
-              {cvUrl && (
-                <a
-                  href={cvUrl}
-                  className="home3-btn home3-btn--gold"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Download CV
-                </a>
-              )}
-              {profile?.email && (
+              {profile?.email ? (
                 <a
                   href={`mailto:${profile.email}`}
-                  className="home3-btn home3-btn--outline"
+                  className="home3-btn home3-btn--gold"
                 >
                   Contact
                 </a>
-              )}
-              {!profile?.email && !cvUrl && (
-                <a href="#contact" className="home3-btn home3-btn--outline">
+              ) : (
+                <a href="#contact" className="home3-btn home3-btn--gold">
                   Contact
                 </a>
               )}
